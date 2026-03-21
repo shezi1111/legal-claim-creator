@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "claimcraft",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /Users/shahzadali/Desktop/Coder/legal-claim-creator && npx next dev -p 3001"],
+      "port": 3001
+    }
+  ]
+}
