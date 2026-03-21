@@ -2,195 +2,126 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, MapPin, MessageSquare } from "lucide-react";
 import { PageHeader } from "@/components/layout/header";
-import { JurisdictionSelector } from "@/components/claim/jurisdiction-selector";
-import { AreaOfLawSelector } from "@/components/claim/area-of-law-selector";
 import { cn } from "@/lib/utils/cn";
 
-const steps = [
-  { number: 1, label: "Jurisdiction" },
-  { number: 2, label: "Area of Law" },
-  { number: 3, label: "Confirm" },
+const jurisdictions = [
+  { id: "england_wales", name: "England & Wales", flag: "🇬🇧", description: "Common law with statutory framework" },
+  { id: "us_federal", name: "US Federal", flag: "🇺🇸", description: "Federal courts and constitutional law" },
+  { id: "us_state", name: "US State", flag: "🇺🇸", description: "State-specific courts and statutes" },
+  { id: "pakistan", name: "Pakistan", flag: "🇵🇰", description: "Common law influenced by Islamic jurisprudence" },
+  { id: "uae", name: "UAE", flag: "🇦🇪", description: "Civil law with Islamic law influences" },
+  { id: "scotland", name: "Scotland", flag: "🏴\u200D", description: "Mixed legal system with civil and common law" },
+  { id: "ireland", name: "Ireland", flag: "🇮🇪", description: "Common law system based on Irish constitution" },
 ];
 
 export default function NewClaimPage() {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState(1);
   const [selectedJurisdiction, setSelectedJurisdiction] = useState<string | null>(null);
-  const [selectedAreaOfLaw, setSelectedAreaOfLaw] = useState<string | null>(null);
 
-  const canProceed =
-    (currentStep === 1 && selectedJurisdiction !== null) ||
-    (currentStep === 2 && selectedAreaOfLaw !== null) ||
-    currentStep === 3;
+  const handleStartClaim = async () => {
+    if (!selectedJurisdiction) return;
 
-  const handleNext = () => {
-    if (currentStep < 3 && canProceed) {
-      setCurrentStep(currentStep + 1);
+    try {
+      const res = await fetch("/api/claims", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jurisdiction: selectedJurisdiction,
+          areaOfLaw: "pending_ai_classification",
+        }),
+      });
+
+      if (res.ok) {
+        const claim = await res.json();
+        router.push(`/claim/${claim.id}`);
+      }
+    } catch {
+      // Fallback for demo
+      router.push("/claim/new-claim-id");
     }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const handleBeginIntake = () => {
-    // In production, this would create the claim via API and redirect
-    router.push("/claim/new-claim-id");
   };
 
   return (
     <div>
       <PageHeader
         title="New Claim"
-        subtitle="Set up your legal claim in a few simple steps."
+        subtitle="Just tell us where it happened. We'll figure out the rest."
       />
 
-      {/* Step Indicator */}
-      <div className="mb-10">
-        <div className="flex items-center justify-center gap-2">
-          {steps.map((step, index) => (
-            <div key={step.number} className="flex items-center">
-              <div className="flex items-center gap-2">
-                <div
-                  className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors",
-                    currentStep > step.number
-                      ? "bg-success text-white"
-                      : currentStep === step.number
-                      ? "bg-primary text-white"
-                      : "bg-border text-text-light"
-                  )}
-                >
-                  {currentStep > step.number ? (
-                    <CheckCircle2 className="h-5 w-5" />
-                  ) : (
-                    step.number
-                  )}
+      <div className="max-w-3xl mx-auto">
+        {/* Step 1: Country Only */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-2">
+            <MapPin className="h-5 w-5 text-primary" />
+            <h2 className="text-lg font-semibold text-text">
+              Where did this happen?
+            </h2>
+          </div>
+          <p className="text-text-light text-sm mb-6">
+            Select the country where the issue occurred. Don&apos;t worry about
+            the legal details — our AI will work that out from your story.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {jurisdictions.map((j) => (
+              <button
+                key={j.id}
+                onClick={() => setSelectedJurisdiction(j.id)}
+                className={cn(
+                  "flex items-center gap-3 p-4 rounded-xl border text-left transition-all",
+                  selectedJurisdiction === j.id
+                    ? "border-primary bg-primary/5 shadow-sm"
+                    : "border-border bg-white hover:border-primary/30 hover:shadow-sm"
+                )}
+              >
+                <span className="text-2xl">{j.flag}</span>
+                <div>
+                  <p className="text-sm font-semibold text-text">{j.name}</p>
+                  <p className="text-xs text-text-light">{j.description}</p>
                 </div>
-                <span
-                  className={cn(
-                    "text-sm font-medium hidden sm:inline",
-                    currentStep >= step.number ? "text-text" : "text-text-light"
-                  )}
-                >
-                  {step.label}
-                </span>
-              </div>
-              {index < steps.length - 1 && (
-                <div
-                  className={cn(
-                    "w-12 sm:w-20 h-px mx-3",
-                    currentStep > step.number ? "bg-success" : "bg-border"
-                  )}
-                />
-              )}
-            </div>
-          ))}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Step Content */}
-      <div className="max-w-4xl mx-auto">
-        {currentStep === 1 && (
-          <div>
-            <h2 className="text-xl font-semibold text-text mb-2">
-              Select Jurisdiction
-            </h2>
-            <p className="text-text-light mb-6">
-              Choose the legal jurisdiction that applies to your claim.
-            </p>
-            <JurisdictionSelector
-              selected={selectedJurisdiction}
-              onSelect={setSelectedJurisdiction}
-            />
-          </div>
-        )}
-
-        {currentStep === 2 && (
-          <div>
-            <h2 className="text-xl font-semibold text-text mb-2">
-              Select Area of Law
-            </h2>
-            <p className="text-text-light mb-6">
-              Choose the legal area that best describes your claim.
-            </p>
-            <AreaOfLawSelector
-              selected={selectedAreaOfLaw}
-              onSelect={setSelectedAreaOfLaw}
-            />
-          </div>
-        )}
-
-        {currentStep === 3 && (
-          <div className="bg-white rounded-2xl border border-border p-8 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-success/10 flex items-center justify-center mx-auto mb-6">
-              <CheckCircle2 className="h-8 w-8 text-success" />
+        {/* What happens next */}
+        {selectedJurisdiction && (
+          <div className="bg-surface rounded-2xl border border-border p-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-300">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <MessageSquare className="h-7 w-7 text-primary" />
             </div>
-            <h2 className="text-xl font-semibold text-text mb-2">
-              Ready to Begin
-            </h2>
-            <p className="text-text-light mb-8 max-w-md mx-auto">
-              You&apos;re about to start a{" "}
-              <span className="font-medium text-text">{selectedAreaOfLaw}</span> claim
-              under{" "}
-              <span className="font-medium text-text">{selectedJurisdiction}</span>{" "}
-              jurisdiction. Our AI will guide you through the intake process.
+            <h3 className="text-lg font-semibold text-text mb-2">
+              Ready to listen
+            </h3>
+            <p className="text-text-light text-sm max-w-md mx-auto mb-6">
+              Just tell us what happened in your own words. Our AI will ask the
+              right questions, identify the legal issues, and build your claim
+              as you talk. No legal knowledge needed.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-              <div className="px-4 py-2 bg-surface rounded-lg border border-border">
-                <span className="text-xs text-text-light">Jurisdiction</span>
-                <p className="text-sm font-medium text-text">{selectedJurisdiction}</p>
-              </div>
-              <div className="px-4 py-2 bg-surface rounded-lg border border-border">
-                <span className="text-xs text-text-light">Area of Law</span>
-                <p className="text-sm font-medium text-text">{selectedAreaOfLaw}</p>
-              </div>
+
+            <div className="flex flex-wrap justify-center gap-3 mb-6 text-xs text-text-light">
+              <span className="px-3 py-1.5 bg-white rounded-full border border-border">
+                AI identifies the area of law
+              </span>
+              <span className="px-3 py-1.5 bg-white rounded-full border border-border">
+                Claim strength builds in real-time
+              </span>
+              <span className="px-3 py-1.5 bg-white rounded-full border border-border">
+                Upload evidence anytime
+              </span>
             </div>
+
             <button
-              onClick={handleBeginIntake}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-light transition-colors shadow-lg shadow-primary/20"
+              onClick={handleStartClaim}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-lg font-semibold rounded-xl hover:bg-primary-light transition-all shadow-lg shadow-primary/20"
             >
-              Begin Intake
+              Start Talking
               <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         )}
-
-        {/* Navigation Buttons */}
-        <div className="flex items-center justify-between mt-8">
-          <button
-            onClick={handleBack}
-            disabled={currentStep === 1}
-            className={cn(
-              "inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg transition-colors",
-              currentStep === 1
-                ? "text-text-light/50 cursor-not-allowed"
-                : "text-text-light hover:text-text hover:bg-white border border-border"
-            )}
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back
-          </button>
-          {currentStep < 3 && (
-            <button
-              onClick={handleNext}
-              disabled={!canProceed}
-              className={cn(
-                "inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-colors",
-                canProceed
-                  ? "bg-primary text-white hover:bg-primary-light"
-                  : "bg-border text-text-light cursor-not-allowed"
-              )}
-            >
-              Next
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );

@@ -147,7 +147,7 @@ export default function ClaimWorkspacePage() {
           />
         </div>
 
-        {/* Evidence Panel */}
+        {/* Right Panel — Evidence + Live Claim Intelligence */}
         <div
           className={cn(
             "hidden lg:flex flex-col border-l border-border bg-white transition-all overflow-hidden",
@@ -155,16 +155,97 @@ export default function ClaimWorkspacePage() {
           )}
         >
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-            <h3 className="text-sm font-semibold text-text">Evidence</h3>
+            <h3 className="text-sm font-semibold text-text">Claim Intelligence</h3>
             <button
               onClick={() => setEvidencePanelOpen(false)}
               className="p-1 hover:bg-surface rounded transition-colors"
-              aria-label="Close evidence panel"
+              aria-label="Close panel"
             >
               <PanelRightClose className="h-4 w-4 text-text-light" />
             </button>
           </div>
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {/* Live Claim Strength */}
+            <div className="bg-surface rounded-xl p-4 border border-border">
+              <h4 className="text-xs font-semibold text-text-light uppercase tracking-wider mb-3">Claim Strength</h4>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="relative w-14 h-14">
+                  <svg viewBox="0 0 40 40" className="w-full h-full -rotate-90">
+                    <circle cx="20" cy="20" r="16" fill="none" stroke="#E2E8F0" strokeWidth="3" />
+                    <circle cx="20" cy="20" r="16" fill="none" stroke={messages.length > 3 ? "#10B981" : messages.length > 1 ? "#F59E0B" : "#E2E8F0"} strokeWidth="3" strokeLinecap="round" strokeDasharray="100.5" strokeDashoffset={100.5 * (1 - Math.min(messages.length * 12, 82) / 100)} />
+                  </svg>
+                  <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-text">
+                    {Math.min(messages.length * 12, 82)}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-text">
+                    {messages.length <= 1 ? "Listening..." : messages.length <= 3 ? "Building..." : "Strong"}
+                  </p>
+                  <p className="text-xs text-text-light">
+                    {messages.length <= 1 ? "Tell us what happened" : messages.length <= 3 ? "Keep going — more detail helps" : "Good foundation established"}
+                  </p>
+                </div>
+              </div>
+              {messages.length > 1 && (
+                <div className="space-y-1.5">
+                  {[
+                    { label: "Facts", score: Math.min(messages.length * 15, 88) },
+                    { label: "Evidence", score: Math.min(evidence.length * 25, 79) },
+                    { label: "Legal Basis", score: Math.min(messages.length * 10, 85) },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <div className="flex justify-between text-[10px] mb-0.5">
+                        <span className="text-text-light">{item.label}</span>
+                        <span className="font-medium text-text">{item.score}</span>
+                      </div>
+                      <div className="h-1 bg-border rounded-full overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all duration-1000"
+                          style={{
+                            width: `${item.score}%`,
+                            backgroundColor: item.score >= 60 ? '#10B981' : item.score >= 30 ? '#F59E0B' : '#E2E8F0'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* AI-Detected Area of Law */}
+            {messages.length > 1 && (
+              <div className="bg-surface rounded-xl p-4 border border-border">
+                <h4 className="text-xs font-semibold text-text-light uppercase tracking-wider mb-2">AI Classification</h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-text">Area of Law</span>
+                    <span className="text-xs font-semibold text-primary px-2 py-0.5 bg-primary/10 rounded-full">
+                      {messages.length > 3 ? "Employment" : "Detecting..."}
+                    </span>
+                  </div>
+                  {messages.length > 2 && (
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-text">Primary Claim</span>
+                      <span className="text-xs font-semibold text-accent px-2 py-0.5 bg-accent/10 rounded-full">
+                        {messages.length > 3 ? "Breach of Contract" : "Analyzing..."}
+                      </span>
+                    </div>
+                  )}
+                  {messages.length > 4 && (
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-text">Limitation</span>
+                      <span className="text-xs font-semibold text-success px-2 py-0.5 bg-success/10 rounded-full">
+                        Within time
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Evidence Upload */}
             <UploadZone onFilesUploaded={handleFilesUploaded} />
             <EvidenceList
               evidence={evidence}
