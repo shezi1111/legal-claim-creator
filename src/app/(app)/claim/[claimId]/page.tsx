@@ -32,39 +32,20 @@ interface EvidenceItem {
   forensicIssues?: boolean;
 }
 
-// Placeholder data
-const initialMessages: Message[] = [
+// Fresh start — no demo data
+const welcomeMessage: Message[] = [
   {
-    id: "1",
+    id: "welcome",
     role: "assistant",
     content:
-      "Welcome to your claim workspace. I'm here to help you build a strong legal claim. Let's start by understanding your situation.\n\nCan you tell me, in your own words, what happened? Please include:\n- **When** did the issue occur?\n- **Who** is involved?\n- **What** happened?\n\nTake your time — the more detail you provide, the stronger we can make your claim.",
+      "Hi, I\u2019m Atticus. \ud83d\udcda\n\nTell me, how can I help you? Whether you\u2019ve been wronged and want to take action, or you\u2019ve received a legal letter and need to defend yourself \u2014 I\u2019m here.\n\nJust tell me what happened in your own words, or upload any documents you have and I\u2019ll start from there. You can type or tap the microphone to speak in any language.",
     timestamp: new Date("2025-03-21T12:00:00"),
   },
 ];
 
-const sampleEvidence: EvidenceItem[] = [
-  {
-    id: "ev-1",
-    filename: "employment-contract.pdf",
-    type: "application/pdf",
-    size: 245000,
-    status: "analyzed",
-    tags: ["contract", "employment terms", "notice period"],
-  },
-  {
-    id: "ev-2",
-    filename: "termination-email.eml",
-    type: "message/rfc822",
-    size: 18000,
-    status: "parsed",
-    tags: ["communication", "termination"],
-  },
-];
-
 export default function ClaimWorkspacePage() {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
-  const [evidence, setEvidence] = useState<EvidenceItem[]>(sampleEvidence);
+  const [messages, setMessages] = useState<Message[]>(welcomeMessage);
+  const [evidence, setEvidence] = useState<EvidenceItem[]>([]);
   const [isResponding, setIsResponding] = useState(false);
   const [evidencePanelOpen, setEvidencePanelOpen] = useState(true);
 
@@ -122,6 +103,19 @@ export default function ClaimWorkspacePage() {
             : item
         )
       );
+
+      // Atticus proactively asks about the uploaded files
+      const fileNames = files.map(f => f.name).join(", ");
+      const fileCount = files.length;
+      const askMessage: Message = {
+        id: `msg-ask-${Date.now()}`,
+        role: "assistant",
+        content: fileCount === 1
+          ? `I\u2019ve received **${fileNames}** and I\u2019m analysing it now.\n\nWhile I work through this, can you tell me:\n\n1. **What is this document?** (e.g., a contract, an email, a letter from the other side)\n2. **When did you receive or create it?**\n3. **Why is it important to your case?**\n\nThis helps me understand how it fits into your claim.`
+          : `I\u2019ve received **${fileCount} files**: ${fileNames}.\n\nI\u2019m analysing them now. While I do that, can you tell me about these documents?\n\n1. **What are they?** (contracts, emails, letters, messages, etc.)\n2. **How do they relate to what happened?**\n3. **Is there anything specific I should look for in them?**\n\nThe more context you give me, the better I can use them to build your case.`,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, askMessage]);
     }, 3000);
   };
 
