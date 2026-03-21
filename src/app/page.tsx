@@ -9,44 +9,50 @@ import {
   ArrowRight,
   CheckCircle2,
   Scale,
+  Sword,
+  Shield,
+  Brain,
+  Target,
+  Users,
+  Gavel,
 } from "lucide-react";
 
 const features = [
   {
     icon: MessageSquare,
-    title: "AI Intake",
+    title: "AI Legal Intake",
     description:
-      "Conversational AI guides you through telling your story, asking the right questions a solicitor would ask.",
+      "Tell Atticus what happened. Our AI asks the right questions, just like a senior partner would during a first consultation.",
   },
   {
     icon: FileSearch,
-    title: "Evidence Analysis",
+    title: "Evidence Analysis & Tagging",
     description:
-      "Upload contracts, emails, photos, and messages. Our AI extracts and organizes key facts automatically.",
+      "Upload contracts, emails, WhatsApp chats, and documents. Atticus extracts, tags, and organises every key fact automatically.",
   },
   {
     icon: ShieldCheck,
     title: "Forensic Verification",
     description:
-      "Metadata analysis and authenticity checks ensure your evidence is credible and court-ready.",
+      "Every document is forensically checked — dates cross-referenced, signatures verified, technical defects flagged before opposing counsel finds them.",
   },
   {
-    icon: Clock,
-    title: "Visual Timeline",
+    icon: Brain,
+    title: "Strategic Intelligence",
     description:
-      "See your case unfold chronologically with an interactive timeline linking events to evidence.",
+      "Atticus doesn\u2019t just build your case \u2014 it analyses the opponent\u2019s position, predicts their strategy, and creates a battle plan.",
   },
   {
     icon: BarChart3,
-    title: "Claim Strength Rating",
+    title: "Real-Time Strength Rating",
     description:
-      "Get an objective assessment of your claim strength with actionable insights to improve it.",
+      "Watch your case strength build as you talk. Get an objective assessment with actionable insights to improve your position.",
   },
   {
-    icon: FileText,
-    title: "LBA Generation",
+    icon: Target,
+    title: "Attack & Defence Plans",
     description:
-      "Generate a professional Letter Before Action that meets legal standards for your jurisdiction.",
+      "Whether you\u2019re serving or being served, Atticus creates a meticulous legal strategy \u2014 down to the timing of every move.",
   },
 ];
 
@@ -54,22 +60,22 @@ const steps = [
   {
     number: "01",
     title: "Tell Your Story",
-    description: "Our AI asks targeted questions to understand your situation fully.",
+    description: "Pick your country and start talking. No legal knowledge needed \u2014 Atticus works it out.",
   },
   {
     number: "02",
-    title: "Upload Evidence",
-    description: "Drop in contracts, messages, photos, and documents.",
+    title: "Upload Everything",
+    description: "Contracts, emails, WhatsApp chats, photos. Connect Gmail. Atticus analyses it all.",
   },
   {
     number: "03",
-    title: "AI Analyzes",
-    description: "We identify legal issues, map evidence to facts, and assess strength.",
+    title: "AI Builds Your Case",
+    description: "Multiple AI agents analyse evidence, research case law, identify causes of action, and rate your strength.",
   },
   {
     number: "04",
-    title: "Get Your Claim",
-    description: "Receive a structured legal claim and Letter Before Action.",
+    title: "Get Your Documents",
+    description: "Receive a professional LBA or defence response, full evidence pack, witness statements, and strategic plan.",
   },
 ];
 
@@ -82,18 +88,18 @@ export default function LandingPage() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
               <Scale className="h-7 w-7 text-primary" />
-              <span className="text-xl font-bold text-primary">ClaimCraft AI</span>
+              <span className="text-xl font-bold text-primary">Atticus</span>
             </div>
             <div className="flex items-center gap-4">
               <Link
                 href="/dashboard"
-                className="text-sm font-medium text-text-light hover:text-text transition-colors"
+                className="text-sm font-medium text-text-light hover:text-text transition-colours"
               >
                 Dashboard
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-light transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-light transition-colours"
               >
                 Get Started
                 <ArrowRight className="h-4 w-4" />
@@ -108,49 +114,121 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent/10 text-accent rounded-full text-sm font-medium mb-6">
-              <ShieldCheck className="h-4 w-4" />
-              AI-Powered Legal Claim Creation
+              <Scale className="h-4 w-4" />
+              Your AI Legal Partner
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary tracking-tight leading-[1.1]">
-              Partner-Level Legal Claims.{" "}
-              <span className="text-accent">Without the Partner-Level Fees.</span>
+              Fight Your Corner.{" "}
+              <span className="text-accent">AI Does the Heavy Lifting.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-text-light max-w-2xl mx-auto leading-relaxed">
-              Democratizing access to justice. Our AI guides you through building a
-              structured legal claim with evidence analysis, strength assessment, and
-              professional document generation.
+              Whether you&apos;re making a claim or defending one, Atticus builds
+              partner-level legal cases at a fraction of the cost. Tell us what
+              happened &mdash; we&apos;ll handle the rest.
             </p>
+
+            {/* Two CTAs: Claim or Defend */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-lg font-semibold rounded-xl hover:bg-primary-light transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-white text-lg font-semibold rounded-xl hover:bg-primary-light transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
               >
-                Start Your Claim
-                <ArrowRight className="h-5 w-5" />
+                <Sword className="h-5 w-5" />
+                I Want to Claim
               </Link>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-text-light hover:text-text rounded-xl border border-border hover:border-primary/30 transition-all"
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-primary rounded-xl border-2 border-primary/20 hover:border-primary/40 hover:bg-primary/5 transition-all"
               >
-                See How It Works
-              </a>
+                <Shield className="h-5 w-5" />
+                I Need to Defend
+              </Link>
             </div>
           </div>
         </div>
-        {/* Decorative gradient */}
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </section>
 
-      {/* Features Section */}
+      {/* Attack vs Defence Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-              Everything You Need to Build a Strong Claim
+              Claim or Defend. Atticus Does Both.
             </h2>
             <p className="mt-4 text-lg text-text-light max-w-2xl mx-auto">
-              Professional legal tools powered by AI, designed for individuals and small
-              businesses seeking justice.
+              The same rigorous AI analysis, whether you&apos;re on the attack or building your defence.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Attack Mode */}
+            <div className="bg-surface rounded-2xl border border-border p-8 hover:shadow-lg transition-all">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                <Sword className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-text mb-3">&ldquo;I want to serve&rdquo;</h3>
+              <p className="text-text-light mb-6">
+                You&apos;ve been wronged and want to take action. Atticus builds your
+                claim from the ground up.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "AI intake — just tell your story",
+                  "Evidence analysis, tagging & forensic checks",
+                  "Cause of action identification with case law",
+                  "Professional Letter Before Action (LBA)",
+                  "Full evidence pack with strategic timeline",
+                  "Attack strategy — timing, sequencing, pressure points",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-text">
+                    <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Defence Mode */}
+            <div className="bg-surface rounded-2xl border border-border p-8 hover:shadow-lg transition-all">
+              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+                <Shield className="h-6 w-6 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold text-text mb-3">&ldquo;I have been served&rdquo;</h3>
+              <p className="text-text-light mb-6">
+                You&apos;ve received a claim or legal letter and need to respond.
+                Atticus analyses their position and builds your defence.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Upload the claim or letter you received",
+                  "AI analyses the opposing side\u2019s strategy and weaknesses",
+                  "Identifies where their evidence is thin or flawed",
+                  "Builds counter-arguments with supporting case law",
+                  "Generates a professional defence response",
+                  "Defence strategy — what to concede, what to fight, when to respond",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-text">
+                    <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-24 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary">
+              Partner-Level Intelligence. Built In.
+            </h2>
+            <p className="mt-4 text-lg text-text-light max-w-2xl mx-auto">
+              Nine AI agents working together to build the strongest possible case,
+              whether you&apos;re claiming or defending.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -159,7 +237,7 @@ export default function LandingPage() {
                 key={feature.title}
                 className="group p-8 bg-white rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colours">
                   <feature.icon className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-text mb-2">{feature.title}</h3>
@@ -171,20 +249,20 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-24 bg-surface">
+      <section id="how-it-works" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
               How It Works
             </h2>
             <p className="mt-4 text-lg text-text-light">
-              Four simple steps from story to structured legal claim.
+              Four simple steps. No legal knowledge required.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div key={step.number} className="relative">
-                <div className="bg-white rounded-2xl p-8 border border-border h-full">
+                <div className="bg-surface rounded-2xl p-8 border border-border h-full">
                   <span className="text-4xl font-bold text-accent/20">
                     {step.number}
                   </span>
@@ -205,21 +283,19 @@ export default function LandingPage() {
       </section>
 
       {/* Example Claim Output */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-              See What You Get
+              See What Atticus Produces
             </h2>
             <p className="mt-4 text-lg text-text-light max-w-2xl mx-auto">
-              Here&apos;s an example of a real claim built by ClaimCraft AI — from intake to
+              Here&apos;s an example of a real claim built by Atticus &mdash; from intake to
               Letter Before Action. This is what partner-level output looks like.
             </p>
           </div>
 
-          {/* Tabbed Example */}
-          <div className="bg-surface rounded-2xl border border-border overflow-hidden">
-            {/* Tab Header */}
+          <div className="bg-white rounded-2xl border border-border overflow-hidden">
             <div className="flex border-b border-border overflow-x-auto">
               {["Claim Summary", "Evidence Tags", "Strength Analysis", "Letter Before Action"].map((tab, i) => (
                 <div
@@ -231,10 +307,8 @@ export default function LandingPage() {
               ))}
             </div>
 
-            {/* Example Content — Claim Summary */}
-            <div className="p-8 bg-white">
+            <div className="p-8">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Left — Claim Details */}
                 <div className="lg:col-span-2 space-y-6">
                   <div>
                     <div className="flex items-center gap-3 mb-4">
@@ -242,7 +316,7 @@ export default function LandingPage() {
                       <span className="text-xs font-semibold uppercase tracking-wider text-accent">Example Claim</span>
                     </div>
                     <h3 className="text-2xl font-bold text-primary mb-2">
-                      Breach of Employment Contract — Wrongful Termination
+                      Breach of Employment Contract &mdash; Wrongful Termination
                     </h3>
                     <div className="flex flex-wrap gap-2 mb-4">
                       <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">England &amp; Wales</span>
@@ -270,95 +344,28 @@ export default function LandingPage() {
                         between management show discussion of &quot;finding a reason&quot; to terminate the
                         claimant. The disciplinary process did not follow the ACAS Code of Practice.
                       </p>
-                      <p>
-                        The claimant has suffered financial loss of approximately &pound;45,000 in lost
-                        salary and benefits during the notice period, plus ongoing loss of earnings
-                        estimated at &pound;8,500 per month.
-                      </p>
                     </div>
                   </div>
 
                   {/* Causes of Action */}
                   <div className="bg-surface rounded-xl p-6 border border-border">
                     <h4 className="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
-                      <Scale className="h-4 w-4" />
+                      <Gavel className="h-4 w-4" />
                       Causes of Action Identified
                     </h4>
                     <div className="space-y-3">
                       {[
-                        { name: "Wrongful Dismissal", strength: "Strong", elements: "4/4 elements satisfied", color: "text-success" },
-                        { name: "Unfair Dismissal (ERA 1996, s.98)", strength: "Strong", elements: "All procedural failures documented", color: "text-success" },
-                        { name: "Whistleblower Retaliation (ERA 1996, s.47B)", strength: "Moderate", elements: "3/4 elements — protected disclosure arguable", color: "text-warning" },
-                        { name: "Breach of Contract (Notice Period)", strength: "Strong", elements: "Contract term clear, no valid basis for summary dismissal", color: "text-success" },
+                        { name: "Wrongful Dismissal", strength: "Strong", elements: "4/4 elements satisfied", colour: "text-success" },
+                        { name: "Unfair Dismissal (ERA 1996, s.98)", strength: "Strong", elements: "All procedural failures documented", colour: "text-success" },
+                        { name: "Whistleblower Retaliation (ERA 1996, s.47B)", strength: "Moderate", elements: "3/4 elements \u2014 protected disclosure arguable", colour: "text-warning" },
+                        { name: "Breach of Contract (Notice Period)", strength: "Strong", elements: "Contract term clear, no valid basis for summary dismissal", colour: "text-success" },
                       ].map((action) => (
                         <div key={action.name} className="flex items-start justify-between p-3 bg-white rounded-lg border border-border">
                           <div>
                             <p className="text-sm font-medium text-text">{action.name}</p>
                             <p className="text-xs text-text-light mt-0.5">{action.elements}</p>
                           </div>
-                          <span className={`text-xs font-semibold ${action.color}`}>{action.strength}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tagged Evidence */}
-                  <div className="bg-surface rounded-xl p-6 border border-border">
-                    <h4 className="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
-                      <FileSearch className="h-4 w-4" />
-                      Evidence Analysis &amp; Tags
-                    </h4>
-                    <div className="space-y-3">
-                      {[
-                        {
-                          file: "Employment_Contract.pdf",
-                          type: "Contract",
-                          tags: ["3-month notice", "Gross misconduct clause", "Grievance procedure", "£85,000 salary"],
-                          tagColors: ["bg-blue-100 text-blue-700", "bg-red-100 text-red-700", "bg-purple-100 text-purple-700", "bg-green-100 text-green-700"],
-                          forensic: null
-                        },
-                        {
-                          file: "WhatsApp_Management_Group.txt",
-                          type: "WhatsApp Export",
-                          tags: ["Admission: 'find a reason'", "Timeline: 3 days after grievance", "Party: HR Director", "Threat: 'make it difficult'"],
-                          tagColors: ["bg-red-100 text-red-700", "bg-blue-100 text-blue-700", "bg-purple-100 text-purple-700", "bg-red-100 text-red-700"],
-                          forensic: null
-                        },
-                        {
-                          file: "Disciplinary_Letter.pdf",
-                          type: "Letter",
-                          tags: ["Date: 15 Jan 2025", "No prior warnings", "Missing: right of appeal"],
-                          tagColors: ["bg-blue-100 text-blue-700", "bg-amber-100 text-amber-700", "bg-red-100 text-red-700"],
-                          forensic: "⚠ Forensic Finding: Letter dated 15 Jan but metadata shows creation date of 10 Jan — drafted before the investigation concluded"
-                        },
-                        {
-                          file: "Email_Thread_Grievance.eml",
-                          type: "Email",
-                          tags: ["Grievance filed: 2 Dec 2024", "Overtime claim: £12,400", "No response within 5 days", "Commitment: 'we will investigate'"],
-                          tagColors: ["bg-blue-100 text-blue-700", "bg-green-100 text-green-700", "bg-amber-100 text-amber-700", "bg-purple-100 text-purple-700"],
-                          forensic: null
-                        },
-                      ].map((evidence) => (
-                        <div key={evidence.file} className="p-3 bg-white rounded-lg border border-border">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <FileText className="h-4 w-4 text-text-light" />
-                              <span className="text-sm font-medium text-text">{evidence.file}</span>
-                            </div>
-                            <span className="text-xs text-text-light">{evidence.type}</span>
-                          </div>
-                          <div className="flex flex-wrap gap-1.5 mb-1">
-                            {evidence.tags.map((tag, i) => (
-                              <span key={tag} className={`px-2 py-0.5 text-[10px] font-medium rounded-full ${evidence.tagColors[i]}`}>
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          {evidence.forensic && (
-                            <div className="mt-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg">
-                              <p className="text-xs text-amber-800">{evidence.forensic}</p>
-                            </div>
-                          )}
+                          <span className={`text-xs font-semibold ${action.colour}`}>{action.strength}</span>
                         </div>
                       ))}
                     </div>
@@ -372,17 +379,14 @@ export default function LandingPage() {
                     </h4>
                     <div className="space-y-2">
                       {[
-                        { remedy: "Damages for wrongful dismissal (notice period)", value: "£21,250", likelihood: "High" },
-                        { remedy: "Compensation for unfair dismissal (basic award)", value: "£4,500 - £6,750", likelihood: "High" },
-                        { remedy: "Compensatory award (loss of earnings)", value: "£25,000 - £45,000", likelihood: "High" },
-                        { remedy: "Injury to feelings (if whistleblowing established)", value: "£9,900 - £33,700", likelihood: "Medium" },
-                        { remedy: "Unpaid overtime claim", value: "£12,400", likelihood: "High" },
+                        { remedy: "Damages for wrongful dismissal (notice period)", value: "\u00A321,250", likelihood: "High" },
+                        { remedy: "Compensatory award (loss of earnings)", value: "\u00A325,000 \u2013 \u00A345,000", likelihood: "High" },
+                        { remedy: "Injury to feelings (if whistleblowing established)", value: "\u00A39,900 \u2013 \u00A333,700", likelihood: "Medium" },
+                        { remedy: "Unpaid overtime claim", value: "\u00A312,400", likelihood: "High" },
                         { remedy: "ACAS uplift (failure to follow Code)", value: "Up to 25% increase", likelihood: "High" },
                       ].map((r) => (
                         <div key={r.remedy} className="flex items-center justify-between p-3 bg-white rounded-lg border border-border">
-                          <div className="flex-1">
-                            <p className="text-sm text-text">{r.remedy}</p>
-                          </div>
+                          <p className="text-sm text-text flex-1">{r.remedy}</p>
                           <div className="flex items-center gap-4 ml-4">
                             <span className="text-sm font-semibold text-primary whitespace-nowrap">{r.value}</span>
                             <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.likelihood === "High" ? "bg-success/10 text-success" : "bg-amber-100 text-amber-700"}`}>
@@ -395,17 +399,13 @@ export default function LandingPage() {
                     <div className="mt-4 p-4 bg-primary/5 rounded-xl border border-primary/10">
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-semibold text-primary">Total Estimated Recovery</span>
-                        <span className="text-lg font-bold text-primary">&pound;73,050 — &pound;124,100</span>
+                        <span className="text-lg font-bold text-primary">&pound;68,550 &mdash; &pound;112,350</span>
                       </div>
-                      <p className="text-xs text-text-light mt-1">
-                        Cost-benefit analysis: Estimated legal costs of &pound;3,000 — &pound;8,000 vs. potential recovery.
-                        Proceeding is commercially viable.
-                      </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Right — Strength Meter & Timeline */}
+                {/* Right Column */}
                 <div className="space-y-6">
                   {/* Strength Score */}
                   <div className="bg-surface rounded-xl p-6 border border-border text-center">
@@ -413,9 +413,9 @@ export default function LandingPage() {
                     <div className="relative w-40 h-20 mx-auto mb-3">
                       <svg viewBox="0 0 200 100" className="w-full h-full">
                         <path d="M 20 90 A 80 80 0 0 1 180 90" fill="none" stroke="#E2E8F0" strokeWidth="12" strokeLinecap="round" />
-                        <path d="M 20 90 A 80 80 0 0 1 180 90" fill="none" stroke="url(#strength-gradient)" strokeWidth="12" strokeLinecap="round" strokeDasharray="251.2" strokeDashoffset={251.2 * (1 - 0.82)} />
+                        <path d="M 20 90 A 80 80 0 0 1 180 90" fill="none" stroke="url(#sg)" strokeWidth="12" strokeLinecap="round" strokeDasharray="251.2" strokeDashoffset={251.2 * (1 - 0.82)} />
                         <defs>
-                          <linearGradient id="strength-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#EF4444" />
                             <stop offset="50%" stopColor="#F59E0B" />
                             <stop offset="100%" stopColor="#10B981" />
@@ -434,7 +434,7 @@ export default function LandingPage() {
                         { label: "Legal Basis", score: 85 },
                         { label: "Remedy Likelihood", score: 76 },
                       ].map((item) => (
-                        <div key={item.label} className="text-left">
+                        <div key={item.label}>
                           <div className="flex justify-between text-xs mb-1">
                             <span className="text-text-light">{item.label}</span>
                             <span className="font-medium text-text">{item.score}</span>
@@ -453,7 +453,7 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  {/* Timeline Preview */}
+                  {/* Timeline */}
                   <div className="bg-surface rounded-xl p-6 border border-border">
                     <h4 className="text-sm font-semibold text-primary mb-4 flex items-center gap-2">
                       <Clock className="h-4 w-4" />
@@ -461,12 +461,10 @@ export default function LandingPage() {
                     </h4>
                     <div className="relative pl-4 border-l-2 border-accent/30 space-y-4">
                       {[
-                        { date: "Mar 2022", event: "Employment commenced", type: "agreement" },
-                        { date: "Nov 2024", event: "Unpaid overtime dispute raised informally", type: "communication" },
+                        { date: "Mar 2022", event: "Employment commenced", type: "normal" },
                         { date: "2 Dec 2024", event: "Formal grievance filed", type: "legal" },
                         { date: "10 Jan 2025", event: "Disciplinary letter drafted (metadata)", type: "critical" },
-                        { date: "12 Jan 2025", event: "WhatsApp: 'find a reason'", type: "critical" },
-                        { date: "14 Jan 2025", event: "Client complaint suddenly filed", type: "communication" },
+                        { date: "12 Jan 2025", event: "WhatsApp: \u2018find a reason\u2019", type: "critical" },
                         { date: "15 Jan 2025", event: "Summary dismissal without notice", type: "critical" },
                       ].map((event) => (
                         <div key={event.date + event.event} className="relative">
@@ -478,38 +476,21 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  {/* Forensic Summary */}
+                  {/* Forensic */}
                   <div className="bg-surface rounded-xl p-6 border border-border">
                     <h4 className="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
                       <ShieldCheck className="h-4 w-4" />
-                      Forensic Analysis
+                      Forensic Findings
                     </h4>
                     <div className="space-y-2">
                       <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg">
-                        <p className="text-xs font-semibold text-amber-800">⚠ Date Mismatch Found</p>
+                        <p className="text-xs font-semibold text-amber-800">\u26A0 Date Mismatch</p>
                         <p className="text-xs text-amber-700 mt-0.5">Disciplinary letter metadata shows creation before investigation concluded</p>
                       </div>
                       <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                        <p className="text-xs font-semibold text-green-800">✓ Contract Properly Executed</p>
+                        <p className="text-xs font-semibold text-green-800">\u2713 Contract Properly Executed</p>
                         <p className="text-xs text-green-700 mt-0.5">Both signatures present, dates consistent</p>
                       </div>
-                      <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                        <p className="text-xs font-semibold text-blue-800">ℹ Missing Appeal Right</p>
-                        <p className="text-xs text-blue-700 mt-0.5">Dismissal letter does not mention right to appeal — ACAS Code breach</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Limitation Warning */}
-                  <div className="bg-surface rounded-xl p-6 border border-border">
-                    <h4 className="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      Limitation Period
-                    </h4>
-                    <div className="text-center">
-                      <p className="text-2xl font-bold text-success">68 days</p>
-                      <p className="text-xs text-text-light mt-1">remaining to file ET1 claim</p>
-                      <p className="text-xs text-text-light mt-0.5">(3 months less 1 day from dismissal)</p>
                     </div>
                   </div>
                 </div>
@@ -518,48 +499,40 @@ export default function LandingPage() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-text-light mb-4">This level of analysis would typically cost &pound;3,000 — &pound;5,000 with a law firm.</p>
+            <p className="text-text-light mb-4">This level of analysis would typically cost &pound;3,000 &mdash; &pound;5,000 with a law firm.</p>
             <Link
               href="/dashboard"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white text-lg font-semibold rounded-xl hover:bg-primary-light transition-all shadow-lg shadow-primary/20"
             >
-              Build Your Claim Now
+              Build Your Case Now
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Pricing Teaser */}
+      {/* Lawyer Marketplace Teaser */}
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent/10 text-accent rounded-full text-sm font-medium mb-6">
+            <Users className="h-4 w-4" />
+            Coming Soon
+          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
-            Claims That Would Cost{" "}
-            <span className="line-through text-text-light">&pound;5,000+</span>{" "}
-            with a Law Firm
+            Need a Solicitor? Let Them Come to You.
           </h2>
           <p className="text-lg text-text-light max-w-2xl mx-auto mb-10">
-            Get structured, evidence-backed legal claims at a fraction of the cost.
-            Our AI handles the heavy lifting that would otherwise require hours of
-            solicitor time.
+            Once Atticus has built your case, put it on the marketplace. Vetted law firms
+            from your jurisdiction bid with fixed-fee quotes. You choose who represents you &mdash;
+            with full transparency on cost.
           </p>
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-surface rounded-2xl p-8 border border-border">
             <div className="text-left">
-              <div className="flex items-center gap-2 mb-3">
-                {[
-                  "AI-guided intake process",
-                  "Evidence analysis & verification",
-                  "Claim strength assessment",
-                  "Professional LBA generation",
-                ].map((item) => (
-                  <div key={item} className="hidden" />
-                ))}
-              </div>
               {[
-                "AI-guided intake process",
-                "Evidence analysis & verification",
-                "Claim strength assessment",
-                "Professional LBA generation",
+                "AI builds 80% of the case",
+                "Vetted solicitors bid with fixed fees",
+                "No hourly billing surprises",
+                "Full transparency on costs and outcomes",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2 text-text mb-2">
                   <CheckCircle2 className="h-5 w-5 text-success flex-shrink-0" />
@@ -586,16 +559,16 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <Scale className="h-6 w-6 text-white/50" />
-              <span className="text-lg font-bold text-white">ClaimCraft AI</span>
+              <span className="text-lg font-bold text-white">Atticus</span>
             </div>
             <p className="text-sm text-center md:text-right max-w-lg">
-              ClaimCraft AI provides legal document preparation assistance. This is not
+              Atticus provides legal document preparation assistance. This is not
               legal advice. For specific legal matters, please consult a qualified
-              solicitor or attorney in your jurisdiction.
+              solicitor or barrister in your jurisdiction.
             </p>
           </div>
           <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm">
-            &copy; {new Date().getFullYear()} ClaimCraft AI. All rights reserved.
+            &copy; 2025 Atticus. All rights reserved.
           </div>
         </div>
       </footer>

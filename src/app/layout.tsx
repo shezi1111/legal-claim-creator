@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ClaimCraft AI — Partner-Level Legal Claims for Everyone",
+  title: "Atticus — Partner-Level Legal Claims for Everyone",
   description:
     "Democratizing access to justice with AI-powered legal claim creation. Get partner-level legal claims without the partner-level fees.",
   keywords: [

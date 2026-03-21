@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { User, Scale } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
@@ -33,6 +34,8 @@ function renderMarkdown(text: string): string {
 
 export function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.role === "user";
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <div
@@ -80,7 +83,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
             isUser ? "text-white/60 text-right" : "text-text-light"
           )}
         >
-          {formatTime(message.timestamp)}
+          {mounted ? formatTime(message.timestamp) : ""}
         </p>
       </div>
     </div>

@@ -67,7 +67,7 @@ export function Sidebar() {
         <div className="flex items-center justify-between h-16 px-6 border-b border-border">
           <Link href="/dashboard" className="flex items-center gap-2">
             <Scale className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold text-primary">ClaimCraft AI</span>
+            <span className="text-lg font-bold text-primary">Atticus</span>
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
