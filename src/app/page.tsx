@@ -118,8 +118,8 @@ export default function LandingPage() {
               Your AI Legal Partner
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary tracking-tight leading-[1.1]">
-              Fight Your Corner.{" "}
-              <span className="text-accent">AI Does the Heavy Lifting.</span>
+              Meet Atticus.{" "}
+              <span className="text-accent">The Smartest Lawyer You&apos;ve Never Met.</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-text-light max-w-2xl mx-auto leading-relaxed">
               Whether you&apos;re making a claim or defending one, Atticus builds
