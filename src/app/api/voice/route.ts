@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       text: transcription.text,
-      language: (transcription as Record<string, unknown>).language || 'auto-detected',
+      language: (transcription as unknown as Record<string, unknown>).language || 'auto-detected',
     });
   } catch (error) {
     console.error('Whisper transcription error:', error);
