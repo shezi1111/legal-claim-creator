@@ -20,9 +20,9 @@ import {
 const features = [
   {
     icon: MessageSquare,
-    title: "AI Legal Intake",
+    title: "Legal Intake",
     description:
-      "Tell Atticus what happened. Our AI asks the right questions, just like a senior partner would during a first consultation.",
+      "Tell Atticus what happened. Atticus asks the right questions, just like a senior partner would during a first consultation.",
   },
   {
     icon: FileSearch,
@@ -69,8 +69,8 @@ const steps = [
   },
   {
     number: "03",
-    title: "AI Builds Your Case",
-    description: "Multiple AI agents analyse evidence, research case law, identify causes of action, and rate your strength.",
+    title: "Atticus Builds Your Case",
+    description: "Atticus analyses evidence, researches case law, identifies causes of action, and rates your strength.",
   },
   {
     number: "04",
@@ -123,8 +123,8 @@ export default function LandingPage() {
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-text-light max-w-2xl mx-auto leading-relaxed">
               Whether you&apos;re making a claim or defending one, Atticus builds
-              partner-level legal cases at a fraction of the cost. Tell us what
-              happened &mdash; we&apos;ll handle the rest.
+              partner-level legal cases at a fraction of the cost. Tell Atticus what
+              happened &mdash; Atticus handles the rest.
             </p>
 
             {/* Two CTAs: Claim or Defend */}
@@ -174,7 +174,7 @@ export default function LandingPage() {
               </p>
               <ul className="space-y-3">
                 {[
-                  "AI intake — just tell your story",
+                  "Just tell Atticus your story",
                   "Evidence analysis, tagging & forensic checks",
                   "Cause of action identification with case law",
                   "Professional Letter Before Action (LBA)",
@@ -202,7 +202,7 @@ export default function LandingPage() {
               <ul className="space-y-3">
                 {[
                   "Upload the claim or letter you received",
-                  "AI analyses the opposing side\u2019s strategy and weaknesses",
+                  "Atticus analyses the opposing side\u2019s strategy and weaknesses",
                   "Identifies where their evidence is thin or flawed",
                   "Builds counter-arguments with supporting case law",
                   "Generates a professional defence response",
@@ -227,7 +227,7 @@ export default function LandingPage() {
               Partner-Level Intelligence. Built In.
             </h2>
             <p className="mt-4 text-lg text-text-light max-w-2xl mx-auto">
-              Nine AI agents working together to build the strongest possible case,
+              Nine specialist agents working together to build the strongest possible case,
               whether you&apos;re claiming or defending.
             </p>
           </div>
@@ -253,7 +253,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-primary">
-              How It Works
+              How Atticus Works
             </h2>
             <p className="mt-4 text-lg text-text-light">
               Four simple steps. No legal knowledge required.
@@ -329,7 +329,7 @@ export default function LandingPage() {
                   <div className="bg-surface rounded-xl p-6 border border-border">
                     <h4 className="text-sm font-semibold text-primary mb-3 flex items-center gap-2">
                       <FileText className="h-4 w-4" />
-                      AI-Compiled Facts Summary
+                      Atticus-Compiled Facts Summary
                     </h4>
                     <div className="text-sm text-text leading-relaxed space-y-3">
                       <p>
@@ -529,7 +529,7 @@ export default function LandingPage() {
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-surface rounded-2xl p-8 border border-border">
             <div className="text-left">
               {[
-                "AI builds 80% of the case",
+                "Atticus builds 80% of the case",
                 "Vetted solicitors bid with fixed fees",
                 "No hourly billing surprises",
                 "Full transparency on costs and outcomes",
@@ -568,7 +568,7 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm">
-            &copy; 2025 Atticus. All rights reserved.
+            &copy; 2026 Atticus. All rights reserved.
           </div>
         </div>
       </footer>

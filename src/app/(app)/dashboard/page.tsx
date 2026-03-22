@@ -6,36 +6,16 @@ import { Plus, Search, SlidersHorizontal, FolderOpen } from "lucide-react";
 import { PageHeader } from "@/components/layout/header";
 import { ClaimCard } from "@/components/claim/claim-card";
 
-// Placeholder claim data for demonstration
-const sampleClaims = [
-  {
-    id: "claim-1",
-    title: "Breach of Employment Contract — Wrongful Termination",
-    jurisdiction: "England & Wales",
-    areaOfLaw: "Employment",
-    status: "analyzing" as const,
-    strengthScore: 72,
-    createdAt: "2025-03-18",
-  },
-  {
-    id: "claim-2",
-    title: "Consumer Rights — Faulty Product Refund",
-    jurisdiction: "England & Wales",
-    areaOfLaw: "Consumer",
-    status: "evidence_gathering" as const,
-    strengthScore: 45,
-    createdAt: "2025-03-15",
-  },
-  {
-    id: "claim-3",
-    title: "Professional Negligence — Accounting Error",
-    jurisdiction: "US Federal",
-    areaOfLaw: "Professional Negligence",
-    status: "draft_ready" as const,
-    strengthScore: 88,
-    createdAt: "2025-03-10",
-  },
-];
+// Claims will be fetched from the database in production
+const sampleClaims: Array<{
+  id: string;
+  title: string;
+  jurisdiction: string;
+  areaOfLaw: string;
+  status: "intake" | "evidence_gathering" | "analyzing" | "draft_ready" | "finalized";
+  strengthScore: number;
+  createdAt: string;
+}> = [];
 
 const statusFilters = [
   { value: "all", label: "All Status" },
