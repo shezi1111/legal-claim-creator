@@ -1,43 +1,35 @@
-FROM node:22-alpine AS base
+FROM node:22-alpine
 
-# Install dependencies only when needed
-FROM base AS deps
 WORKDIR /app
+
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Build the application
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Set dummy env vars for build (real ones are injected at runtime)
-ENV GOOGLE_CLIENT_ID=build-placeholder
-ENV GOOGLE_CLIENT_SECRET=build-placeholder
-ENV DATABASE_URL=build-placeholder
-ENV ANTHROPIC_API_KEY=build-placeholder
-ENV OPENAI_API_KEY=build-placeholder
-ENV GOOGLE_AI_API_KEY=build-placeholder
-ENV NEXT_PUBLIC_APP_URL=build-placeholder
+# Set dummy env vars for build only (real ones injected by Railway at runtime)
+ARG GOOGLE_CLIENT_ID=build-placeholder
+ARG GOOGLE_CLIENT_SECRET=build-placeholder
+ARG DATABASE_URL=build-placeholder
+ARG ANTHROPIC_API_KEY=build-placeholder
+ARG OPENAI_API_KEY=build-placeholder
+ARG GOOGLE_AI_API_KEY=build-placeholder
+ARG NEXT_PUBLIC_APP_URL=build-placeholder
+
+ENV GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
+ENV GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET
+ENV DATABASE_URL=$DATABASE_URL
+ENV ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
+ENV GOOGLE_AI_API_KEY=$GOOGLE_AI_API_KEY
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 
 RUN npm run build
 
-# Production image
-FROM base AS runner
-WORKDIR /app
 ENV NODE_ENV=production
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node", "server.js"]
+EXPOSE 3000
+
+CMD ["npm", "start"]
