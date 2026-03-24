@@ -1,8 +1,0 @@
-FROM node:22-alpine
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
-COPY . .
-RUN GOOGLE_CLIENT_ID=x GOOGLE_CLIENT_SECRET=x DATABASE_URL=x ANTHROPIC_API_KEY=x OPENAI_API_KEY=x GOOGLE_AI_API_KEY=x NEXT_PUBLIC_APP_URL=x npm run build
-ENV NODE_ENV=production
-EXPOSE 3000

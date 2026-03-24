@@ -88,7 +88,7 @@ export default function NewClaimPage() {
 
         {/* What happens next */}
         {selectedJurisdiction && (
-          <div className="bg-surface rounded-2xl border border-border p-8 text-center animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="bg-surface rounded-2xl border border-border p-8 text-center animate-fade-in">
             <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <MessageSquare className="h-7 w-7 text-primary" />
             </div>

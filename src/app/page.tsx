@@ -93,13 +93,13 @@ export default function LandingPage() {
             <div className="flex items-center gap-4">
               <Link
                 href="/dashboard"
-                className="text-sm font-medium text-text-light hover:text-text transition-colours"
+                className="text-sm font-medium text-text-light hover:text-text transition-colors"
               >
                 Dashboard
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-light transition-colours"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary-light transition-colors"
               >
                 Get Started
                 <ArrowRight className="h-4 w-4" />
@@ -237,7 +237,7 @@ export default function LandingPage() {
                 key={feature.title}
                 className="group p-8 bg-white rounded-2xl border border-border hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colours">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors">
                   <feature.icon className="h-6 w-6 text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-text mb-2">{feature.title}</h3>

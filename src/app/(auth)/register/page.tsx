@@ -438,7 +438,7 @@ export default function RegisterPage() {
               </span>
             </label>
             {fieldErrors.terms && (
-              <p className="mt-1 ml-6.5 text-xs text-danger">
+              <p className="mt-1 ml-[26px] text-xs text-danger">
                 {fieldErrors.terms}
               </p>
             )}
