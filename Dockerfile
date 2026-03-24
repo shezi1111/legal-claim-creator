@@ -3,9 +3,6 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
-RUN npm run build
+RUN GOOGLE_CLIENT_ID=x GOOGLE_CLIENT_SECRET=x DATABASE_URL=x ANTHROPIC_API_KEY=x OPENAI_API_KEY=x GOOGLE_AI_API_KEY=x NEXT_PUBLIC_APP_URL=x npm run build
 ENV NODE_ENV=production
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
 EXPOSE 3000
-CMD ["node_modules/.bin/next", "start", "-H", "0.0.0.0", "-p", "3000"]
